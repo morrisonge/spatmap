@@ -62,7 +62,7 @@ moran_map <- function(polys,
 
 
   # Making the map
-  tm_shape(area) +
+  tm_shape(polys) +
     tm_fill("lisa_patterns", palette = pal)
 
 }
