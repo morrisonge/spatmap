@@ -4,6 +4,7 @@ import(sf)
 import(Matrix)
 import(biclust)
 importFrom(robustHD, standardize)
+importFrom(stringr, str_replace_all)
 
 export(local_moran,local_moran_sims,local_moran_pvalue)
 export(local_geary,local_geary_sims,local_geary_pvalue)
