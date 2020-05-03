@@ -51,7 +51,7 @@ significance_map <- function(polys,
   #extracting x variable from sf dataframe
   x <- get_var(xname,polys)
   if (!is.null(yname)){
-    y <- get_var(poly,yname)
+    y <- get_var(yname,polys)
   } else {
     y <- NULL
   }

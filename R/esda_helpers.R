@@ -58,7 +58,7 @@ get_pvalue <- function(mat, observed,type = "one-sided"){
 
 #function used to contruct the correct palette for a set of classification
 match_palette <- function(patterns, classifications, colors){
-  classes_present <- unique(patterns)
+  classes_present <- base::unique(patterns)
   mat <- matrix(c(classifications,colors), ncol = 2)
   logi <- classifications %in% classes_present
   pre_col <- matrix(mat[logi], ncol = 2)

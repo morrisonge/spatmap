@@ -5,20 +5,20 @@
 #' @param y A vector of numerical values, default is NULL
 #' @param weights Weights structure from spdep, must be style "B"
 #' @return local A vector of local joint count statistics
-#' @export 
+#' @export
 
 local_jc <- function(x,y = NULL,weights){
-  
+
   #checking for valid weights
   check_weights(weights)
   if(!is.binary(x)){
     stop("x must be a binary variable")
   }
-  
+
   #converting weights to full size binary spatial weights matrix
   W <- convert_matrix(weights)
   B <- binarize(W,threshold = .00001)
-  
+
   #computing the join count statistic for the bivariate and univariate case
   if(!is.null(y)){
     if(!is.binary(y)){
@@ -41,28 +41,28 @@ local_jc <- function(x,y = NULL,weights){
 #' @export
 
 local_jc_sims <- function(x,y = NULL,weights,permutations){
-  
+
   #checking parameters
   check_permutations(permutations)
   check_weights(weights)
-  
+
   #checking x
   if(!is.binary(x)){
     stop("x must be a binary variable")
   }
-  
+
   #converting weights to full size binary spatial weights matrix
   W <- convert_matrix(weights)
   B <- binarize(W,threshold = .00001)
-  
+
   #making an id variable
   n <- nrow(W)
   id <- 1:n
-  
+
   #creating matrix to store reference statistics
   local.sims <- matrix(NA, nrow = n, ncol=permutations)
   x.sample = matrix(NA, nrow = n, ncol = permutations)
-  
+
   #setting up for the bivariate version of the statistic and checking y
   if(!is.null(y)){
     if(!is.binary(y)){
@@ -70,13 +70,13 @@ local_jc_sims <- function(x,y = NULL,weights,permutations){
     }
     x <- x * y
   }
-  
+
   #filling each row of the sample matrix
   for(i in 1:n){
     sample.indices <- sample(id[-i], permutations, replace = TRUE)
     x.sample[i,] <- x[sample.indices]
   }
-  
+
   #computing the join count statistic
   local.sims <- x.sample * B%*%x.sample
   return(local.sims)
@@ -94,13 +94,13 @@ local_jc_sims <- function(x,y = NULL,weights,permutations){
 #' @export
 
 local_jc_pvalue <- function(x,y=NULL,weights,permutations = 999){
-  
+
   #computing observed statistics and reference distributions
   observed <- local_jc(x,y=y,weights)
   sims <- local_jc_sims(x,y=y,weights,permutations = permutations)
-  
+
   #computing p-value
-  pvalue <- get_pvalue(observed,sims,type = "one-sided")
+  pvalue <- get_pvalue(sims,observed,type = "one-sided")
   return(pvalue)
 }
 

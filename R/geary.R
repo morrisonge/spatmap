@@ -15,8 +15,8 @@ local_geary <- function(x,y = NULL, weights){
   if (is.null(y)){
     lg <- x2 - 2*x*(W%*%x) + W%*%x2
   } else {
-    y2 <- x^2
-    lg <- x2 - 2*x*(W%*%x) + W%*%x2 + y2 - 2*y*(W%*%y) + W%*%y2
+    y2 <- y^2
+    lg <- (x2 - 2*x*(W%*%x) + W%*%x2) + (y2 - 2*y*(W%*%y) + W%*%y2)
   }
   return(lg)
 }
@@ -70,7 +70,7 @@ local_geary_sims <- function(x,y=NULL,weights,permutations = 999){
   if (!is.null(y)){
     y2 <- y^2
     y2.sample <- y.sample ^ 2
-    local.sims  <- local.sims + (y2 - 2*y%*%y.sample + W%*%y2.sample)
+    local.sims  <- local.sims + (y2 - 2*y*W%*%y.sample + W%*%y2.sample)
   }
   return(local.sims)
 }

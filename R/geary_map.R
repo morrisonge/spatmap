@@ -85,7 +85,7 @@ geary_map <- function(polys,
 
     #creating the correct palette for the bivariate geary
     classes <- c("Positive", "Negative", "Not Significant")
-    colors <- c("#C6DBEF","#3182BD","#D3D3D3")
+    colors <- c("#3182BD","#C6DBEF","#D3D3D3")
     pal <- match_palette(lg_patterns,classes,colors)
   }
 
