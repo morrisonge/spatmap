@@ -38,7 +38,7 @@ moran_map <- function(polys,
   }
 
   #computing p-value from observed statistics and reference distribution
-  p_value <- local_moran_pvalue(x,y=y,weights,permutations = permutations)
+  pvalue <- local_moran_pvalue(x,y=y,weights,permutations = permutations)
 
   # Standardizing the x and y vars
   z_x <- standardize(x)
@@ -47,10 +47,10 @@ moran_map <- function(polys,
 
   #Assigning classifications
   lisa_patterns <- as.character( interaction(z_x > 0, W%*%z_y > 0) )
-  lisa_patterns <- patterns %>%
+  lisa_patterns <- lisa_patterns %>%
     str_replace_all("TRUE","High") %>%
     str_replace_all("FALSE","Low")
-  lisa_patterns[which(p_value > alpha)] <- "Not Significant"
+  lisa_patterns[which(pvalue > alpha)] <- "Not Significant"
 
   # Adding the classifications to the data frame
   polys["lisa_patterns"] <- lisa_patterns
