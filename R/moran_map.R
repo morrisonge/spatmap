@@ -1,6 +1,6 @@
 #######################################################################
 #' @title  Local Moran Map
-#' @description  The function to make local moran cluster maps. 
+#' @description  The function to make local moran cluster maps.
 #' @param polys An sf dataframe
 #' @xname string, the name of the x variable, this variable must be contained in the sf dataframe
 #' @yname string, the name of the y variable, this variable must be contained in the sf dataframe, default option
@@ -13,44 +13,45 @@
 
 moran_map <- function(polys,
                       xname,
-                      yname = NULL, 
+                      yname = NULL,
                       weights = NULL,
-                      permutations = 999, 
+                      permutations = 999,
                       alpha){
-  
-  
+
+
   # creating weights if left to default
   if (is.null(weights)){
     weights <- default_weights(polys)
   }
-  
+
   #checking validity of parameters
   check_parameters(polys,permutations,alpha,weights)
-  
+
   # extracting x variable from sf dataframe
   x <- get_var(xname,polys)
-  
-  # assigning y variable 
+
+  # assigning y variable
   if (is.null(yname)){
     y <- x
   } else {
     y <- get_var(yname,polys)
   }
-  
+
   #computing p-value from observed statistics and reference distribution
   p_value <- local_moran_pvalue(x,y=y,weights,permutations = permutations)
-  
+
   # Standardizing the x and y vars
   z_x <- standardize(x)
   z_y <- standardize(y)
-  
+  W <- convert_matrix(weights)
+
   #Assigning classifications
-  lisa_patterns <- as.character( interaction(z_x > 0, W%*%z_y > 0) ) 
-  lisa_patterns <- patterns %>% 
-    str_replace_all("TRUE","High") %>% 
+  lisa_patterns <- as.character( interaction(z_x > 0, W%*%z_y > 0) )
+  lisa_patterns <- patterns %>%
+    str_replace_all("TRUE","High") %>%
     str_replace_all("FALSE","Low")
   lisa_patterns[which(p_value > alpha)] <- "Not Significant"
-  
+
   # Adding the classifications to the data frame
   polys["lisa_patterns"] <- lisa_patterns
 
@@ -58,10 +59,10 @@ moran_map <- function(polys,
   patts <- c("High.High", "High.Low", "Low.High", "Low.Low", "Not Significant")
   colors <- c("#DE2D26","#FCBBA1","#C6DBEF", "#3182BD", "#D3D3D3")
   pal <- match_palette(lisa_patterns,patts,colors)
-  
-  
+
+
   # Making the map
   tm_shape(area) +
     tm_fill("lisa_patterns", palette = pal)
-  
+
 }
