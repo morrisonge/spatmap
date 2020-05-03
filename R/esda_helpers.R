@@ -38,7 +38,7 @@ get_var <- function(vname,df) {
 
 
 #function used to compute pvalues based reference statistics and observed statistics
-get_pvalue <- function(mat, observed,type = "one-sided") {
+get_pvalue <- function(mat, observed,type = "one-sided"){
   nperm <- ncol(mat)
   nlocs <- nrow(mat)
   p_value <- rep(NA,nlocs)

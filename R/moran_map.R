@@ -16,7 +16,7 @@ moran_map <- function(polys,
                       yname = NULL,
                       weights = NULL,
                       permutations = 999,
-                      alpha){
+                      alpha = .05){
 
 
   # creating weights if left to default
