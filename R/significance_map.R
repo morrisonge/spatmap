@@ -46,12 +46,25 @@ significance_map <- function(polys,
     weights <- default_weights(polys)
   }
 
-
-
   #extracting x variable from sf dataframe
   x <- get_var(xname,polys)
+
+  if (any(is.na(x))){
+    stop("x variable cannot have na values")
+  }
+
+  if (!is.numeric(x)){
+    stop("x must be numeric")
+  }
+
   if (!is.null(yname)){
     y <- get_var(yname,polys)
+    if (any(is.na(y))){
+      stop("y variable cannot have na values")
+    }
+    if (!is.numeric(y)){
+      stop("y must be numeric")
+    }
   } else {
     y <- NULL
   }
@@ -105,3 +118,7 @@ significance_map <- function(polys,
   tm_shape(polys) +
     tm_fill("sig", palette = pal)
 }
+
+
+
+

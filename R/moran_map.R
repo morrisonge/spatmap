@@ -30,11 +30,27 @@ moran_map <- function(polys,
   # extracting x variable from sf dataframe
   x <- get_var(xname,polys)
 
+
+  if (any(is.na(x))){
+    stop("x variable cannot have na values")
+  }
+
+  if (!is.numeric(x)){
+    stop("x must be numeric")
+  }
+
   # assigning y variable
   if (is.null(yname)){
     y <- x
   } else {
     y <- get_var(yname,polys)
+    if (any(is.na(y))){
+      stop("y variable cannot have na values")
+    }
+
+    if (!is.numeric(y)){
+      stop("y must be numeric")
+    }
   }
 
   #computing p-value from observed statistics and reference distribution
@@ -64,5 +80,4 @@ moran_map <- function(polys,
   # Making the map
   tm_shape(polys) +
     tm_fill("lisa_patterns", palette = pal)
-
 }

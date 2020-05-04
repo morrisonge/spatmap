@@ -91,6 +91,8 @@ check_permutations <- function(permutations){
 }
 
 
+
+
 #function to assess to validity of parameters used within the mapping functions
 check_parameters <- function(polys,permutations,alpha,weights){
 
@@ -101,6 +103,12 @@ check_parameters <- function(polys,permutations,alpha,weights){
   #making sure alpha is in correct range
   if (alpha > 1 | alpha < 0){
     stop("alpha must be between 0 and 1")
+  }
+
+
+  min_sig <- 1 / (1 + permutations)
+  if (alpha < min_sig){
+    stop("More permutations are needed to have this level of alpha")
   }
 
 

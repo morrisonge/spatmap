@@ -31,10 +31,24 @@ geary_map <- function(polys,
 
   #extracting x variable from sf dataframe
   x <- get_var(xname,polys)
+  if (any(is.na(x))){
+    stop("x variable cannot have na values")
+  }
+
+  if (!is.numeric(x)){
+    stop("x must be numeric")
+  }
 
   #extracting y variable from sf dataframe, and assigining NULL if yname is null
   if (!is.null(yname)){
     y <- get_var(yname,polys)
+    if (any(is.na(y))){
+      stop("y variable cannot have na values")
+    }
+
+    if (!is.numeric(y)){
+      stop("y must be numeric")
+    }
   } else {
     y <- NULL
   }
@@ -85,7 +99,7 @@ geary_map <- function(polys,
 
     #creating the correct palette for the bivariate geary
     classes <- c("Positive", "Negative", "Not Significant")
-    colors <- c("#3182BD","#C6DBEF","#D3D3D3")
+    colors <- c("#C6DBEF","#D3D3D3","#3182BD")
     pal <- match_palette(lg_patterns,classes,colors)
   }
 

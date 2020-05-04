@@ -35,12 +35,25 @@ jc_map <- function(polys,
   if (!(is.binary(x))){
     stop("xname must designate a binary variable")
   }
+  if (any(is.na(x))){
+    stop("x variable cannot have na values")
+  }
 
+  if (!is.numeric(x)){
+    stop("x must be numeric")
+  }
 
   if(!is.null(yname)){
     y <- get_var(yname,polys)
     if (!(is.binary(y))){
       stop("yname must designate a binary variable")
+    }
+    if (any(is.na(y))){
+      stop("y variable cannot have na values")
+    }
+
+    if (!is.numeric(y)){
+      stop("y must be numeric")
     }
   } else {
     y <- NULL
@@ -68,22 +81,4 @@ jc_map <- function(polys,
   tm_shape(polys) +
     tm_fill("unique_value", palette = pal,style = "cat")
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

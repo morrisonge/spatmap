@@ -96,3 +96,4 @@ local_geary_pvalue <- function(x,y=NULL,weights,permutations = 999){
   pvalue <- get_pvalue(sims,observed,type = "two-sided")
   return(pvalue)
 }
+

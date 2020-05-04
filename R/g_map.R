@@ -24,6 +24,14 @@ g_map <- function(polys,xname,weights = NULL, permutations = 999, alpha = .05,ty
   #extracting x variable from sf dataframe
   x <- get_var(xname,polys)
 
+  if (any(is.na(x))){
+    stop("x variable cannot have na values")
+  }
+
+  if (!is.numeric(x)){
+    stop("x must be numeric")
+  }
+
   #computing p_values from the observed statistics and reference distributions
   pvalue <- local_g_pvalue(x,weights,permutations = permutations,type = type)
   g <- local_g(x,weights,type = type)
