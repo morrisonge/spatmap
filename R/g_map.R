@@ -2,7 +2,7 @@
 #' @title  Local G Map
 #' @description  The function to make local G and G* cluster maps.
 #' @param polys An sf dataframe
-#' @xname string, the name of the x variable, this variable must be contained in the sf dataframe
+#' @param xname string, the name of the x variable, this variable must be contained in the sf dataframe
 #' @param weights weights structure from spdep, must be style "B"; default is set equal to NULL, and first
 #' order queen contiguity weights are used to construct the map
 #' @param alpha numeric, cut-off level of significance, must be between 0 and 1, the default is .05

@@ -12,3 +12,4 @@ Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
 URL: https://github.com/morrisonge/spatmap
+RoxygenNote: 7.1.0

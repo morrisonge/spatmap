@@ -96,7 +96,7 @@ local_g_sims <- function(x,weights, permutations, type = "g"){
 #' @param x A vector of numerical values
 #' @param weights Weights structure from spdep, must be style "B"
 #' @param permutations Number of permutations, the default is 999
-#' @param type
+#' @param type String, type of Local G statistic, options are "g" or "gstar"
 #' @return pvalue A vector of p-values for each locations local geary statistic
 
 local_g_pvalue <- function(x,weights,permutations = 999,type = "g"){

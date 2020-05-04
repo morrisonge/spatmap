@@ -4,8 +4,8 @@
 #' statistics include moran, geary, G, G*, and join count. There are bivariate options for moran,
 #' geary, and join count
 #' @param polys An sf dataframe
-#' @xname string, the name of the x variable, this variable must be contained in the sf dataframe
-#' @yname string, the name of the y variable, this variable must be contained in the sf dataframe, default option
+#' @param xname string, the name of the x variable, this variable must be contained in the sf dataframe
+#' @param yname string, the name of the y variable, this variable must be contained in the sf dataframe, default option
 #' is NULL, can only be used for moran, geary, and join count
 #' @param type string, the type of local statistic, options are: "moran", "geary", "g", "gstar", and "join_count"
 #' @param weights weights structure from spdep, must be style "B"; default is set equal to NULL, and first
