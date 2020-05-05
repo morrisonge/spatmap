@@ -1,2 +1,44 @@
 # spatmap
-# spatmap
+
+**spatmap** is an R package for the visualization and computation of local spatial statistics. The
+mapping functions support a variety of local spatial statistics with cluster maps and 
+significance maps. These include Local Moran, Local Geary, Local Join Count, Local G, and Local G*.
+There are bivariate options for the Local Moran, Local Geary, and Local Join Count statistics.
+All of these mapping functions have many formatting options through the **tmap** package.
+
+## mapping functions supported
+
+- Local Geary Maps
+
+- Local Moran Maps
+
+- Local Join Count Maps
+
+- Local G and G* Maps
+
+- Significance Maps
+
+## Installation
+
+I am working to make **spatmap** available through CRAN, but for now, you will need to 
+remote install the package from github. This is done done with `remotes::install_github`
+
+```r
+remotes::install_github("morrisonge/spatmap")
+```
+
+
+
+## Tutorials 
+
+
+
+
+
+
+
+
+
+
+
+
