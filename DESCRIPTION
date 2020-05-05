@@ -6,7 +6,7 @@ Author: person("Grant","Morrison",email="morrisonge7@gmail.com",role = c("aut","
 Maintainer: Grant Morrison <morrisonge7@gmail.com>
 Description: A package for mapping local spatial statistics. It includes options for moran, geary, g, gstar, and join count statistics. The package is built off of spdep and tmap, and provides functions to visualization locla statistics significance and clusters. Support is provided for bivariate options of moran, geary, and join count.
 Depends: R (>= 3.5.0)
-Imports: tmap, spdep, Matrix, sf, biclust
+Imports: tmap, spdep, Matrix, sf, biclust, RcolorBrewer
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
