@@ -10,7 +10,7 @@ All of these mapping functions have many formatting options through the **tmap**
 
 ### Local Geary Cluster Maps
 
-![Local Geary Map]("https://github.com/morrisonge/spatmap/images/geary.png")
+![Local Geary Map](/images/geary.png)
 
 ### Local Moran Cluster Maps
 
