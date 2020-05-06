@@ -10,21 +10,21 @@ All of these mapping functions have many formatting options through the **tmap**
 
 ### Local Geary Cluster Maps
 
-![]("https://github.com/morrisonge/spatmap/images/geary.png")
+![Local Geary Map]("https://github.com/morrisonge/spatmap/images/geary.png")
 
 ### Local Moran Cluster Maps
 
-![]("https://github.com/morrisonge/spatmap/images/moran.png")
+![Local Moran Map]("https://github.com/morrisonge/spatmap/images/moran.png")
 
 ### Local Join Count Maps
 
 ### Local G and G* Cluster Maps
 
-![]("https://github.com/morrisonge/spatmap/images/g.png")
+![Local G Map]("https://github.com/morrisonge/spatmap/images/g.png")
 
 ### Significance Maps for each local statistic
 
-![]("https://github.com/morrisonge/spatmap/images/moranandsig.png")
+![Moran Cluster and Significance Map]("https://github.com/morrisonge/spatmap/images/moranandsig.png")
 
 ### Bivariate options for Geary, Moran, and Join Count
 
