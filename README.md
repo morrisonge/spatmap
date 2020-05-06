@@ -6,17 +6,19 @@ significance maps. These include Local Moran, Local Geary, Local Join Count, Loc
 There are bivariate options for the Local Moran, Local Geary, and Local Join Count statistics.
 All of these mapping functions have many formatting options through the **tmap** package.
 
-## mapping functions supported
+## Local Statistics Maps
 
-- Local Geary Maps
+- Local Geary Cluster Maps
 
-- Local Moran Maps
+- Local Moran Cluster Maps
 
 - Local Join Count Maps
 
-- Local G and G* Maps
+- Local G and G* Cluster Maps
 
-- Significance Maps
+- Significance Maps for each local statistic
+
+- Bivariate options for Geary, Moran, and Join Count
 
 ## Installation
 
