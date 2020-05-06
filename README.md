@@ -8,15 +8,23 @@ All of these mapping functions have many formatting options through the **tmap**
 
 ## Local Statistics Maps
 
-- Local Geary Cluster Maps
+### Local Geary Cluster Maps
 
-- Local Moran Cluster Maps
+![]("images/geary.png")
 
-- Local Join Count Maps
+### Local Moran Cluster Maps
 
-- Local G and G* Cluster Maps
+![]("images/moran.png")
 
-- Significance Maps for each local statistic
+### Local Join Count Maps
+
+### Local G and G* Cluster Maps
+
+![]("images/g.png")
+
+### Significance Maps for each local statistic
+
+![]("images/moranandsig.png")
 
 - Bivariate options for Geary, Moran, and Join Count
 
