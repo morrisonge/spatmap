@@ -13,45 +13,41 @@
 
 g_map <- function(polys,xname,weights = NULL, permutations = 999, alpha = .05,type = "g"){
 
+  #converting sf to geoda
+  gda <- sf_to_geoda(polys)
+
+
   # creating weights if left to default
   if (is.null(weights)){
-    weights <- default_weights(polys)
+    weights <- queen_weights(gda)
   }
-
-  #checking validity of parameters
-  check_parameters(polys,permutations,alpha,weights)
 
   #extracting x variable from sf dataframe
   x <- get_var(xname,polys)
 
-  if (any(is.na(x))){
-    stop("x variable cannot have na values")
-  }
+  #computing local moran lisa
+  lisa <- rgeoda::local_g(weights, x,perm = permutations)
 
-  if (!is.numeric(x)){
-    stop("x must be numeric")
-  }
+  #computing lisa, pvalues, clusters, labels, and colors
+  clusters <- lisa_clusters(lisa,cutoff = alpha)
+  labels <- lisa_labels(lisa)
+  pvalue <- lisa_pvalues(lisa)
+  colors <- lisa_colors(lisa)
 
-  #computing p_values from the observed statistics and reference distributions
-  pvalue <- local_g_pvalue(x,weights,permutations = permutations,type = type)
-  g <- local_g(x,weights,type = type)
-  #assigning cluster classifications
-  n <- nrow(polys)
-  g_patterns <- rep(NA,n)
-  g_patterns[g > mean(g)] <- "High"
-  g_patterns[g < mean(g)] <- "Low"
-  g_patterns[pvalue > alpha] <- "Not Significant"
+  lisa_patterns <- labels[clusters+1]
 
+  # Constructing the correct palette based on presense of classifications
+  pal <- match_palette(lisa_patterns,labels,colors)
 
-  #Creating the correct color palette
-  classes <- c("High", "Low", "Not Significant")
-  colors <- c("#DE2D26", "#3182BD", "#D3D3D3")
-  pal <- match_palette(g_patterns,classes,colors)
+  #getting the labels present in the data
+  labels <- labels[labels %in% lisa_patterns]
 
-  #Adding the patterns to the sf dataframe
-  polys["g_patterns"] <- g_patterns
+  #adding the cluster values to the data frame
+  polys["lisa_clusters"] <- clusters
 
-  #Making the map
+  #making the map
   tm_shape(polys) +
-    tm_fill("g_patterns", palette = pal)
+    tm_fill("lisa_clusters",labels = labels, palette = pal,style = "cat")
+
 }
+
