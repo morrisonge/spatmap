@@ -1,6 +1,6 @@
 import(tmap)
 import(sf)
-import(RcolorBrewer)
+import(RColorBrewer)
 import(rgeoda)
 
 export(moran_map)
