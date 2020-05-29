@@ -52,17 +52,3 @@ geary_map <- function(polys,
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-

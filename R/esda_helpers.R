@@ -2,31 +2,6 @@
 
 
 
-#used to assess whether a variable is binary or not for local joint count statisttics
-is.binary <- function(x){
-  vals <- unique(x)
-  len <- length(vals)
-  if(len > 2){
-    return(FALSE)
-  } else {
-    if(min(x) == 0 || max(x) == 1){
-      if(len == 1){
-        return(TRUE)
-      } else{
-        if (min(x) == 0 && max(x) == 1){
-          return(TRUE)
-        } else {
-          return(FALSE)
-        }
-      }
-    } else {
-      return(FALSE)
-    }
-  }
-
-}
-
-
 
 #function used to extract variable from sf dataframe with the variable name
 get_var <- function(vname,df) {
