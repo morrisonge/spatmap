@@ -1,14 +1,13 @@
 #######################################################################
 #' @title  Local G Map
-#' @description  The function to make local G and G* cluster maps.
+#' @description  The function to make a local G cluster map
 #' @param polys An sf dataframe
 #' @param xname string, the name of the x variable, this variable must be contained in the sf dataframe
-#' @param weights weights structure from spdep, must be style "B"; default is set equal to NULL, and first
-#' order queen contiguity weights are used to construct the map
+#' @param weights weights structure from rgeoda, the default option is NULL and in this case,
+#' the weights will be first order queen contiguity
 #' @param alpha numeric, cut-off level of significance, must be between 0 and 1, the default is .05
 #' @param permutations numeric, number of permutations the conditional randimization approach to significance, maximum is 99999,
 #' default is 999
-#' @param type string, can be "g" or "gstar"
 #' @export
 
 g_map <- function(polys,xname,weights = NULL, permutations = 999, alpha = .05,type = "g"){

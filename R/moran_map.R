@@ -1,5 +1,14 @@
-
-
+#######################################################################
+#' @title  Local Moran Cluster Map
+#' @description  The function to make a local moran cluster map.
+#' @param polys An sf dataframe
+#' @param xname string with the name of the variable. The variable must be in the sf dataframe with the same name
+#' @param weights  weights structure from rgeoda, the default option is NULL and in this case,
+#' the weights will be first order queen contiguity
+#' @param alpha numeric, cut level of significance, must be between 0 and 1, the default is .05
+#' @param permutations numeric, number of permutations the conditional randimization approach to significance, maximum is 99999,
+#' default is 999
+#' @export
 
 moran_map <- function(polys,
                       xname,

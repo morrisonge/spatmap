@@ -3,8 +3,8 @@
 #' @description  The function to make local join count cluster maps.
 #' @param polys An sf dataframe
 #' @param xname string, the name of the x variable, this variable must be contained in the sf dataframe
-#' @param weights geoda weights structure, can be genrated with function from rgeoda, the default option is 1st order
-#' queen contiguity weights
+#' @param weights weights structure from rgeoda, the default option is NULL and in this case,
+#' the weights will be first order queen contiguity
 #' @param alpha numeric, cut-off level of significance, must be between 0 and 1, the default is .05
 #' @param permutations numeric, number of permutations the conditional randimization approach to significance, maximum is 99999,
 #' default is 999

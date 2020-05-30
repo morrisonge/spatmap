@@ -4,15 +4,14 @@
 #' statistics include moran, geary, G, G*, and join count. There are multivariate options for
 #' geary and join count
 #' @param polys An sf dataframe
-#' @param vnames string, the name of the x variable, this variable must be contained in the sf dataframe
+#' @param vnames string or vector of strings, the name or names of the variables, they must be contained in the sf dataframe
 #' @param type string, the type of local statistic, options are: "moran", "geary", "g", "gstar", and "joincount"
-#' @param weights weights structure from spdep, must be style "B"; default is set equal to NULL, and first
-#' order queen contiguity weights are used to construct the map
+#' @param weights  weights structure from rgeoda, the default option is NULL and in this case,
+#' the weights will be first order queen contiguity
 #' @param alpha numeric, cut level of significance, must be between 0 and 1, the default is .05
 #' @param permutations numeric, number of permutations the conditional randimization approach to significance, maximum is 99999,
 #' default is 999
 #' @export
-
 significance_map <- function(polys,
                              vnames,
                              type,

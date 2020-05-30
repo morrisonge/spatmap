@@ -2,7 +2,7 @@ import(tmap)
 import(sf)
 import(RColorBrewer)
 import(rgeoda)
-
+import(tidyverse)
 export(moran_map)
 export(geary_map)
 export(g_map)
