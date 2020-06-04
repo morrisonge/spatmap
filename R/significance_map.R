@@ -74,7 +74,7 @@ significance_map <- function(polys,
   }
 
   #computing join count
-  if (type == "join_count"){
+  if (type == "joincount"){
     if (length(vnames) == 1){
       lisa <- rgeoda::local_joincount(weights, x,perm = permutations)
     } else {
