@@ -91,7 +91,7 @@ significance_map <- function(polys,
   brks <- potential_brks[which(potential_brks > target_p & potential_brks < alpha)]
   brks2 <- c(target_p, brks, alpha)
   labels <- c(as.character(brks2), "Not Significant")
-  brks3 <- c(-Inf, brks2, 1)
+  brks3 <- c(0, brks2, 1)
 
   cuts <- cut(pvalue, breaks = brks3,labels = labels)
 
