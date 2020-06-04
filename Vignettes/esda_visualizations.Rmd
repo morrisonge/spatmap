@@ -306,6 +306,8 @@ significance_map(guerry,"doncat",permutations = 99999,type = "join_count") +
 
 #### Multivariate Join Count Map
 
+For the multivariate join count map, we use `multi_joincount_map`, and input both binary 
+variables, **doncat** and **infcat**
 
 ```{r}
 multi_joincount_map(guerry,c("doncat","infcat"),permutations = 99999) +
@@ -314,8 +316,7 @@ multi_joincount_map(guerry,c("doncat","infcat"),permutations = 99999) +
 ```
 
 
-
-
+For the corresponding significance map, we use `significance_map`, and use the same input variables.
 ```{r}
 significance_map(guerry, c("doncat","infcat"),permutations = 99999,type = "join_count") +
   tm_borders()
