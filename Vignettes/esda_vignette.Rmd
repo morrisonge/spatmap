@@ -85,11 +85,11 @@ In our case this is **guerry**, and `"Donatns"`. This will give us a basic local
 and a significance cutoff level of .05. These will be the default parameters for all of the mapping functions in 
 **spatmap**.
 ```{r}
-moran_map(guerry, "Donatns", permutations = 99999) 
+moran_map(guerry, "Donatns") 
 ```
 
 To make the corresponding significance map, we use `significance_map`. The parameters are the same as `moran_map`,
-but we have to also specify the type local spatial statistic. In this case it is `"moran"`.
+but we have to also specify the type of local spatial statistic. In this case it is `"moran"`.
 ```{r}
 significance_map(guerry,"Donatns",type = "moran")
 ```
@@ -132,8 +132,7 @@ significance_map(guerry,"Donatns",type = "moran", permutations = 99999, alpha = 
 
 One of the main advantages of **spatmap** is that it integrates with the **tmap** mapping package. The mapping functions
 allow you to add addtional layers to the map, give a vast array of formating options. To start, we set 
-`tmap_mode("view")` to get interactive maps. We add borders to the map with `tm_borders`. We set the style with
-`tm_style("cobalt")`. Lastly we set the title of the map with `tm_layout`
+`tmap_mode("view")` to get interactive maps. We add borders to the map with `tm_borders`. Lastly we set the title of the map with `tm_layout`
 ```{r}
 tmap_mode("view")
 moran_map(guerry, "Donatns", permutations = 99999) +
@@ -155,7 +154,7 @@ significance_map(guerry,"Donatns",type = "moran", permutations = 99999) +
 
 All of the mapping functions have a parameter for custom weights, which is always `weights =`. The default
 option is NULL and the function computes 1st order queen contiguity weights. We can specify the custom 
-weights to be something else, by building different wight with **rgeoda**. Earlier in the notebook, we constructed
+weights to be something else, by building different weights with **rgeoda**. Earlier in the notebook, we constructed
 2nd order rook contiguity weights. We use these weights in the `moran_map` with `weights =` parameter.
 ```{r}
 moran_map(guerry, "Donatns", permutations = 99999, weights = rook) +
@@ -244,14 +243,14 @@ For the Local $G*$ Cluster Map, we use `gstar_map`.
 ```{r}
 gstar_map(guerry,"Donatns", permutation = 99999) +
   tm_borders() +
-  tm_layout(legend.outside = TRUE,title = "Local G Cluster Map")
+  tm_layout(legend.outside = TRUE,title = "Local G* Cluster Map")
 ```
 
 For the associated significance map, we use `significance_map` and set `type = "gstar"`.
 ```{r}
 significance_map(guerry,"Donatns",type = "gstar", permutations = 99999) +
   tm_borders() +
-   tm_layout(legend.outside = TRUE,title = "Local G Significance Map")
+   tm_layout(legend.outside = TRUE,title = "Local G* Significance Map")
 ```
 
 
@@ -283,10 +282,6 @@ guerry$doncat <- doncat
 guerry$infcat <- infcat
 ```
 
-```{r}
-tm_shape(guerry) + 
-  tm_fill("doncat", style = "cat")
-```
 
 
 We make a Local Join Count Cluster Map with `joincount_map` and use **doncat** as the input variable.
