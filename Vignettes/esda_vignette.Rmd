@@ -85,7 +85,7 @@ In our case this is **guerry**, and `"Donatns"`. This will give us a basic local
 and a significance cutoff level of .05. These will be the default parameters for all of the mapping functions in 
 **spatmap**.
 ```{r}
-moran_map(guerry, "Donatns") 
+moran_map(guerry, "Donatns", permutations = 99999) 
 ```
 
 To make the corresponding significance map, we use `significance_map`. The parameters are the same as `moran_map`,
@@ -138,16 +138,15 @@ allow you to add addtional layers to the map, give a vast array of formating opt
 tmap_mode("view")
 moran_map(guerry, "Donatns", permutations = 99999) +
   tm_borders() +
-  tm_style("cobalt") +
   tm_layout(title = "Local Moran Map of Donatns")
 ```
  
 We set the same styling options for the significance map as well, but with a different title. 
 
 ```{r}
+tmap_mode("plot")
 significance_map(guerry,"Donatns",type = "moran", permutations = 99999) +
   tm_borders() +
-  tm_style("cobalt") +
   tm_layout(legend.outside = TRUE, title = "Local Moran Significance Map ")
 ```
 
@@ -161,8 +160,7 @@ weights to be something else, by building different wight with **rgeoda**. Earli
 ```{r}
 moran_map(guerry, "Donatns", permutations = 99999, weights = rook) +
   tm_borders() +
-  tm_style("cobalt") +
-  tm_layout(title = "Local Moran Map of Donatns")
+  tm_layout(legend.outside = TRUE,title = "Local Moran Map of Donatns")
 ```
 
 As we can see the resulting map is very different from the default weights.
@@ -173,8 +171,7 @@ the local moran map above. We set `weights = rook`.
 ```{r}
 significance_map(guerry,"Donatns",type = "moran", permutations = 99999, weights = rook) +
   tm_borders() +
-  tm_style("cobalt") +
-  tm_layout(title = "Local Moran Significance Map ")
+  tm_layout(legend.outside = TRUE,title = "Local Moran Significance Map ")
 ```
 
 
@@ -185,20 +182,17 @@ as `moran_map` with 999 permutations, a cutoff significance level of .05, and a 
 add the **tmap** formatting functions too. 
 ```{r}
 geary_map(guerry,"Donatns",permutations = 99999) +
-  tm_style("cobalt") +
   tm_borders() +
-  tm_layout(title = "Local Geary Cluster Map Donatns")
-  
+  tm_layout(legend.outside = TRUE,title = "Local Geary Cluster Map Donatns")
 ```
 
 
 To make the corresponding significance map, we use `significance_map` and set `type = "geary"`.
 
 ```{r}
-significance_map(guerry,"Donatns",type = "geary", permutations = 99999, weights = rook) +
+significance_map(guerry,"Donatns",type = "geary", permutations = 99999) +
   tm_borders() +
-  tm_style("cobalt") +
-  tm_layout(title = "Local Geary Significance Map ")
+  tm_layout(legend.outside = TRUE,title = "Local Geary Significance Map ")
 ```
 
 
@@ -211,16 +205,15 @@ of **spatmap**.
 ```{r}
 multi_geary_map(guerry,c("Donatns","Infants"), permutations = 99999, alpha = .01) +
   tm_borders() +
-  tm_layout(title = "Local Geary Cluster Map Donatns")
+  tm_layout(legend.outside = TRUE,title = "Local Geary Cluster Map Donatns")
 ```
 
 To make the significance map that corresponds to the multivariate geary map, we use `significance_map`,
 and enter a vector of variable names instead of just one. We also need to set `type = "geary"`. 
 ```{r}
 significance_map(guerry,c("Donatns", "Infants"),type = "geary", permutations = 99999, alpha = .01)  +
-  tm_style("cobalt") +
   tm_borders() +
-  tm_layout(title = "Multivariate Local Geary Significance Map Donatns")
+  tm_layout(legend.outside = TRUE,title = "Multivariate Local Geary Significance Map Donatns")
 ```
 
 
@@ -232,8 +225,7 @@ as the other mapping functions in **spatmap**.
 ```{r}
 g_map(guerry,"Donatns", permutation = 99999) +
   tm_borders() +
-  tm_style("cobalt") +
-  tm_layout(title = "Local G Cluster Map")
+  tm_layout(legend.outside = TRUE,title = "Local G Cluster Map")
 ```
 
 
@@ -241,7 +233,7 @@ To make the significance map, we use `significance_map` and set `type = "g"`
 ```{r}
 significance_map(guerry,"Donatns",type = "g", permutations = 99999) +
   tm_borders() +
-   tm_layout(title = "Local G Significance Map")
+   tm_layout(legend.outside = TRUE,title = "Local G Significance Map")
 ```
 
 
@@ -252,15 +244,14 @@ For the Local $G*$ Cluster Map, we use `gstar_map`.
 ```{r}
 gstar_map(guerry,"Donatns", permutation = 99999) +
   tm_borders() +
-  tm_style("cobalt") +
-  tm_layout(title = "Local G Cluster Map")
+  tm_layout(legend.outside = TRUE,title = "Local G Cluster Map")
 ```
 
 For the associated significance map, we use `significance_map` and set `type = "gstar"`.
 ```{r}
 significance_map(guerry,"Donatns",type = "gstar", permutations = 99999) +
   tm_borders() +
-   tm_layout(title = "Local G Significance Map")
+   tm_layout(legend.outside = TRUE,title = "Local G Significance Map")
 ```
 
 
@@ -298,16 +289,14 @@ We make a Local Join Count Cluster Map with `joincount_map` and use **doncat** a
 ```{r}
 joincount_map(guerry,"doncat",permutations = 99999) +
   tm_borders() +
-  tm_style("cobalt") +
-  tm_layout(title = "Local Join Count Cluster Map doncat")
+  tm_layout(legend.outside = TRUE,title = "Local Join Count Cluster Map doncat")
 ```
 
 To get the corresponding significance map, we use `significance_map` and set `type = "join_count"`
 ```{r}
 significance_map(guerry,"doncat",permutations = 99999,type = "joincount") +
   tm_borders() +
-  tm_style("cobalt") +
-  tm_layout(title = "Local Join Count Significance Map doncat")
+  tm_layout(legend.outside = TRUE,title = "Local Join Count Significance Map doncat")
 ```
 
 
@@ -320,13 +309,14 @@ variables, **doncat** and **infcat**
 ```{r}
 multi_joincount_map(guerry,c("doncat","infcat"),permutations = 99999) +
   tm_borders() +
-  tm_layout("Multivariate Local Join Count Cluster Map")
+  tm_layout(legend.outside = TRUE,"Multivariate Local Join Count Cluster Map")
 ```
 
 
 For the corresponding significance map, we use `significance_map`, and use the same input variables.
 ```{r}
 significance_map(guerry, c("doncat","infcat"),permutations = 99999,type = "joincount") +
-  tm_borders()
+  tm_borders() +
+  tm_layout(legend.outside = TRUE,"Multivariate Local Join Count Significance Map")
 ```
 

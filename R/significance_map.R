@@ -84,6 +84,13 @@ significance_map <- function(polys,
 
   #computing pvalues
   pvalue <- lisa_pvalues(lisa)
+  
+  
+  if (type == "joincount"){
+    if (length(vnames) == 1){
+    pvalue[which(x == 0)] <- .999
+    }
+  }
 
   #creating breaks based on p-values
   target_p <- 1 / (1 + permutations)
