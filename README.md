@@ -99,7 +99,7 @@ Variables included:
 ## Tutorials 
 
 
-
+[spatmap](https://github.com/morrisonge/spatmap/tree/master/Vignettes)
 
 
 
