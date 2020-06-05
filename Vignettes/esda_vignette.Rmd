@@ -283,6 +283,10 @@ guerry$doncat <- doncat
 guerry$infcat <- infcat
 ```
 
+```{r}
+tm_shape(guerry) + 
+  tm_fill("doncat", style = "cat")
+```
 
 
 We make a Local Join Count Cluster Map with `joincount_map` and use **doncat** as the input variable.
@@ -290,13 +294,6 @@ We make a Local Join Count Cluster Map with `joincount_map` and use **doncat** a
 joincount_map(guerry,"doncat",permutations = 99999) +
   tm_borders() +
   tm_layout(legend.outside = TRUE,title = "Local Join Count Cluster Map doncat")
-```
-
-To get the corresponding significance map, we use `significance_map` and set `type = "join_count"`
-```{r}
-significance_map(guerry,"doncat",permutations = 99999,type = "joincount") +
-  tm_borders() +
-  tm_layout(legend.outside = TRUE,title = "Local Join Count Significance Map doncat")
 ```
 
 
@@ -313,10 +310,4 @@ multi_joincount_map(guerry,c("doncat","infcat"),permutations = 99999) +
 ```
 
 
-For the corresponding significance map, we use `significance_map`, and use the same input variables.
-```{r}
-significance_map(guerry, c("doncat","infcat"),permutations = 99999,type = "joincount") +
-  tm_borders() +
-  tm_layout(legend.outside = TRUE,"Multivariate Local Join Count Significance Map")
-```
 

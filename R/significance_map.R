@@ -1,11 +1,11 @@
 #######################################################################
 #' @title  Significance Map
 #' @description  The function to make significance maps for a variety of local statistics. These
-#' statistics include moran, geary, G, G*, and join count. There are multivariate options for
+#' statistics include moran, geary, G, and G*. There are multivariate options for
 #' geary and join count
 #' @param polys An sf dataframe
 #' @param vnames string or vector of strings, the name or names of the variables, they must be contained in the sf dataframe
-#' @param type string, the type of local statistic, options are: "moran", "geary", "g", "gstar", and "joincount"
+#' @param type string, the type of local statistic, options are: "moran", "geary", "g", and "gstar"
 #' @param weights  weights structure from rgeoda, the default option is NULL and in this case,
 #' the weights will be first order queen contiguity
 #' @param alpha numeric, cut level of significance, must be between 0 and 1, the default is .05
@@ -20,13 +20,13 @@ significance_map <- function(polys,
                              permutations = 999){
 
   #checking for supported types
-  supported_types <- c("moran","geary","g","gstar","joincount")
+  supported_types <- c("moran","geary","g","gstar")
   if (!(type %in% supported_types)){
-    stop("type is not support, choose from: moran, geary, g , gstar, join_count")
+    stop("type is not support, choose from: moran, geary, g , gstar")
   }
 
   if (length(vnames) > 1){
-    ysupported_types <- c("geary","joincount")
+    ysupported_types <- c("geary")
     if(!(type %in% ysupported_types)){
       stop("moran, g, and gstar do not have multivariate options")
     }
@@ -74,23 +74,23 @@ significance_map <- function(polys,
   }
 
   #computing join count
-  if (type == "joincount"){
-    if (length(vnames) == 1){
-      lisa <- rgeoda::local_joincount(weights, x,perm = permutations)
-    } else {
-      lisa <- rgeoda::local_multijoincount(weights, df,perm = permutations)
-    }
-  }
+  #if (type == "joincount"){
+  #  if (length(vnames) == 1){
+  #    lisa <- rgeoda::local_joincount(weights, x,perm = permutations)
+  #  } else {
+  #    lisa <- rgeoda::local_multijoincount(weights, df,perm = permutations)
+  #  }
+  #}
 
   #computing pvalues
   pvalue <- lisa_pvalues(lisa)
   
   
-  if (type == "joincount"){
-    if (length(vnames) == 1){
-    pvalue[which(x == 0)] <- .999
-    }
-  }
+  #if (type == "joincount"){
+  #  if (length(vnames) == 1){
+  #  pvalue[which(x == 0)] <- .999
+  #  }
+  #}
 
   #creating breaks based on p-values
   target_p <- 1 / (1 + permutations)
