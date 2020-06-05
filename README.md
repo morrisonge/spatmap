@@ -102,7 +102,9 @@ Variables included:
 [spatmap](https://github.com/morrisonge/spatmap/tree/master/Vignettes)
 
 
+## Future Work
 
+Add package to CRAN or add the mapping functions to **rgeoda**
 
 
 
